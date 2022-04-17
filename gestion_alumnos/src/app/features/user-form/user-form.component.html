@@ -1,10 +1,78 @@
 <form [formGroup]="userForm">
   <div class="example-container">
+
     <mat-form-field appearance="fill">
-      <mat-label>Enter your email</mat-label>
-      <input matInput placeholder="pat@example.com" formControlName="name">
-      <mat-error *ngIf="userForm.invalid">{{getErrorMessage()}}</mat-error>
+      <mat-label>Nombre</mat-label>
+      <input matInput placeholder="Nombre" formControlName="name">
     </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Apellido1</mat-label>
+      <input matInput placeholder="Apellido" formControlName="lastName1">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Apellido2</mat-label>
+      <input matInput placeholder="Apellido2" formControlName="lastName2">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="pat@example.com" formControlName="email">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Dni</mat-label>
+      <input matInput placeholder="0123456789D" formControlName="dni">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Telefono</mat-label>
+      <input matInput placeholder="456789123" formControlName="phone">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Otro telefono</mat-label>
+      <input matInput placeholder="456789123" formControlName="anotherPhone">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Pais</mat-label>
+      <mat-select>
+        <mat-option value="option">España</mat-option>
+        <mat-option value="option">Alemania</mat-option>
+        <mat-option value="option">Francia</mat-option>
+        <mat-option value="option">Portugal</mat-option>
+        <mat-option value="option">Andorra</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Provincia</mat-label>
+      <input matInput placeholder="Zaragoza" formControlName="province">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Codigo Postal</mat-label>
+      <input matInput placeholder="28801" formControlName="postalCode">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Localidad</mat-label>
+      <input matInput placeholder="Alcalá" formControlName="name">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Nombre de usuario</mat-label>
+      <input matInput placeholder="UserName" formControlName="name">
+    </mat-form-field>
+
+      <mat-error *ngIf="userForm.invalid">{{getErrorMessage()}}</mat-error>
+
+  </div>
+  <div>
+    <button mat-icon-button aria-label="Example icon-button with add icon" (click)="addUser()">
+      <mat-icon>add</mat-icon>
+    </button>
   </div>
 </form>
 
