@@ -1,6 +1,9 @@
 <app-header (onToggleMenu)="open_sidebar()"></app-header>
-
-<mat-drawer #drawer [opened]="true">
-  <app-sidenav></app-sidenav>
-</mat-drawer>
-
+<mat-drawer-container class="main-view" autosize>
+  <mat-drawer #drawer [opened]="true" mode="side">
+    <app-sidenav></app-sidenav>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

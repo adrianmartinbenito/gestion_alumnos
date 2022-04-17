@@ -1,0 +1,10 @@
+<form [formGroup]="userForm">
+  <div class="example-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" formControlName="name">
+      <mat-error *ngIf="userForm.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+  </div>
+</form>
+
