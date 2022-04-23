@@ -1,20 +1,19 @@
 import { PostalCodeValidator } from './../validators/PostalCodeValidator';
 import { DniValidator } from './../validators/dni.validator';
-import { UserListService } from './../services/user-list.service';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
 import { User } from '../models/user';
+import { UserListService } from '../services/user-list.service';
 
 @Component({
-  selector: 'app-user-form',
-  templateUrl: './user-form.component.html',
-  styleUrls: ['./user-form.component.scss']
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.scss']
 })
-export class UserFormComponent implements OnInit {
+export class UserProfileComponent implements OnInit {
 
   userForm : FormGroup;
   newUser!: User;
-  selected='Esada';
 
   constructor(public form:FormBuilder, private userListService: UserListService) {
     this.userForm = this.form.group({
@@ -58,10 +57,6 @@ export class UserFormComponent implements OnInit {
       ]),
     })
   }
-
-  ngOnInit(): void {
-  }
-
   getErrorMessage() {
     if (!this.userForm.valid) {
       return 'Error with format';
@@ -69,31 +64,7 @@ export class UserFormComponent implements OnInit {
     return;
   }
 
-  addUser(){
-    if(this.userForm.invalid){
-      alert('Bad credentials');
-      return;
-    }else{
-      this.newUser = new User(
-        this.userForm.get('name')?.value,
-        this.userForm.get('lastName1')?.value,
-        this.userForm.get('lastName2')?.value,
-        this.userForm.get('email')?.value,
-        this.userForm.get('dni')?.value,
-        this.userForm.get('phone')?.value,
-        this.userForm.get('anotherPhone')?.value,
-        this.userForm.get('country')?.value,
-        this.userForm.get('province')?.value,
-        this.userForm.get('postalCode')?.value,
-        this.userForm.get('locality')?.value,
-        this.userForm.get('nickname')?.value,
-      )
-
-
-    }
-    this.userListService.addUser(this.newUser)
-    localStorage.setItem('Alumnos',JSON.stringify(this.userListService.getUsers()));
-    alert ("Añadido");
+  ngOnInit(): void {
   }
 
 }

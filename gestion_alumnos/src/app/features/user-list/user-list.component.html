@@ -24,10 +24,10 @@
     <ng-container matColumnDef="buttons">
       <mat-header-cell *matHeaderCellDef> </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <button mat-icon-button value={{element.dni}} color="primary" aria-label="Delete button" >
+        <button mat-icon-button value={{element.dni}} color="primary" aria-label="Delete button" (click)="delete_user(element)">
           <mat-icon>delete</mat-icon>
         </button>
-        <button mat-icon-button value={{element.dni}} color="primary" aria-label="Profile button" >
+        <button mat-icon-button value={{element.dni}} color="primary" aria-label="Profile button" (click)="router_to_profile(element)">
           <mat-icon>visibility</mat-icon>
         </button>
       </mat-cell>

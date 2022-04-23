@@ -1,3 +1,4 @@
+<header><h2>Perfil del usuario</h2></header>
 <form [formGroup]="userForm">
   <div class="example-container">
 
@@ -23,7 +24,7 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Dni</mat-label>
-      <input matInput placeholder="01256789D" formControlName="dni">
+      <input matInput placeholder="01234789D" formControlName="dni">
     </mat-form-field>
 
     <mat-form-field appearance="fill">
@@ -38,8 +39,8 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Pais</mat-label>
-      <mat-select [(value)]="selected">
-        <mat-option value="España">España</mat-option>
+      <mat-select>
+        <mat-option value="option">España</mat-option>
         <mat-option value="option">Alemania</mat-option>
         <mat-option value="option">Francia</mat-option>
         <mat-option value="option">Portugal</mat-option>
@@ -47,13 +48,10 @@
       </mat-select>
     </mat-form-field>
 
-    <ng-container ngIf*="selected==='España'">
-      <mat-form-field appearance="fill">
-        <mat-label>Provincia</mat-label>
-        <input matInput placeholder="Zaragoza" formControlName="province">
-      </mat-form-field>
-    </ng-container>
-
+    <mat-form-field appearance="fill">
+      <mat-label>Provincia</mat-label>
+      <input matInput placeholder="Zaragoza" formControlName="province">
+    </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Codigo Postal</mat-label>
@@ -73,9 +71,10 @@
 
   </div>
   <div>
-    <button mat-icon-button aria-label="Example icon-button with add icon" (click)="addUser()">
+    <button mat-icon-button aria-label="Example icon-button with add icon" >
       <mat-icon>add</mat-icon>
     </button>
   </div>
 </form>
+
 

@@ -16,12 +16,14 @@ import { AppComponent } from './app.component';
 import { UserFormComponent } from './features/user-form/user-form.component';
 import { UserListComponent } from './features/user-list/user-list.component';
 import { SharedModule } from './shared/shared.module';
+import { UserProfileComponent } from './features/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserFormComponent,
-    UserListComponent
+    UserListComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

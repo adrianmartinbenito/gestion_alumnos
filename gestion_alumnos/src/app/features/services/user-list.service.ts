@@ -8,10 +8,8 @@ import { User } from '../models/user';
 export class UserListService {
 
   private _users:User[];
-  private _users$:Subject<User[]>;
   constructor() {
     this._users = JSON.parse(localStorage.getItem('Alumnos')!!)
-    this._users$ = new Subject();
   }
 
   getUsers(): User[]{
@@ -19,6 +17,10 @@ export class UserListService {
   }
   addUser(user:User){
     this._users.push(user);
-    this._users$.next(this._users);
+  }
+  delete_user(user:User){
+    this._users.splice(this._users.indexOf(user),1);
+    localStorage.setItem('Alumnos',JSON.stringify(this._users));
+    return this._users;
   }
 }
