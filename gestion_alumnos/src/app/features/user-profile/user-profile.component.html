@@ -60,19 +60,19 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Localidad</mat-label>
-      <input matInput placeholder="Alcalá" formControlName="name">
+      <input matInput placeholder="Alcalá" formControlName="location">
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>Nombre de usuario</mat-label>
-      <input matInput placeholder="UserName" formControlName="name">
+      <input matInput placeholder="UserName" formControlName="nickname">
     </mat-form-field>
 
       <mat-error *ngIf="userForm.invalid">{{getErrorMessage()}}</mat-error>
 
   </div>
   <div>
-    <button mat-icon-button aria-label="Example icon-button with add icon" >
-      <mat-icon>add</mat-icon>
+    <button mat-raised-button aria-label="Example icon-button with add icon" color="primary" (click)="modifyProfile()">
+      Modificar datos
     </button>
   </div>
 </form>

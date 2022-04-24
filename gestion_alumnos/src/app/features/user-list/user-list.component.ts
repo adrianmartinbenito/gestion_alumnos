@@ -29,6 +29,7 @@ export class UserListComponent implements OnInit {
 
   }
   router_to_profile(user:User){
+    this.listService.setUserProfile(user);
     this.router.navigate(["/profile"]);
   }
 }

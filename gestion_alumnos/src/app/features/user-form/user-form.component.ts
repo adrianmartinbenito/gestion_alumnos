@@ -58,6 +58,16 @@ export class UserFormComponent implements OnInit {
         Validators.required,
         PostalCodeValidator.validatePostalCode(),
       ]),
+      location: new FormControl('',[
+        Validators.required,
+        Validators.maxLength(15),
+        Validators.minLength(2),
+      ]),
+      nickname: new FormControl('',[
+        Validators.required,
+        Validators.maxLength(15),
+        Validators.minLength(2),
+      ]),
       pass: new FormControl('',[
         Validators.required,
         Validators.maxLength(20),
@@ -77,7 +87,7 @@ export class UserFormComponent implements OnInit {
 
   getErrorMessage() {
     if (!this.userForm.valid) {
-      return 'Error with format';
+      return 'Revise los campos del formulario';
     }
     return;
   }

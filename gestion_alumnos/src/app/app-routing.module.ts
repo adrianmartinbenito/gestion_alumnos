@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserListComponent } from './features/user-list/user-list.component';
 
 const routes: Routes = [
-  {path:'',component:UserFormComponent},
+  {path:'',component:UserListComponent},
   {path:'add', component:UserFormComponent},
   {path:'list', component:UserListComponent},
   {path:'profile', component:UserProfileComponent},
