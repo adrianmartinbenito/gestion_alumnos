@@ -13,7 +13,7 @@ export class UserListComponent implements OnInit {
 
   _users:User[];
   dataSource :MatTableDataSource<User>
-  displayedColumns: string[] = ['name', 'lastName1', 'dni', 'email','buttons'];
+  displayedColumns: string[] = ['nickname','name', 'lastName1', 'lastName2','dni','country','postalCode', 'email','buttons'];
   constructor(private listService: UserListService, private router : Router) {
     this._users = listService.getUsers();
     this.dataSource = new MatTableDataSource<User>(this._users);

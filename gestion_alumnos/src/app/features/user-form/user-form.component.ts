@@ -3,8 +3,9 @@ import { PostalCodeValidator } from './../validators/PostalCodeValidator';
 import { DniValidator } from './../validators/dni.validator';
 import { UserListService } from './../services/user-list.service';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from '../models/user';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-user-form',
@@ -13,67 +14,67 @@ import { User } from '../models/user';
 })
 export class UserFormComponent implements OnInit {
 
-  userForm : FormGroup;
+  userForm: FormGroup;
   newUser!: User;
-  selected='Esada';
+  selected = 'Esada';
   hide = true;
 
-  constructor(public form:FormBuilder, private userListService: UserListService) {
+  constructor(public form: FormBuilder, private userListService: UserListService) {
     this.userForm = this.form.group({
-      name: new FormControl('',[
+      name: new FormControl('', [
         Validators.required,
         Validators.maxLength(15),
         Validators.minLength(2),
       ]),
-      lastName1: new FormControl('',[
+      lastName1: new FormControl('', [
         Validators.required,
         Validators.maxLength(15),
         Validators.minLength(2),
       ]),
-      lastName2: new FormControl('',[
+      lastName2: new FormControl('', [
         Validators.maxLength(15),
         Validators.minLength(2),
       ]),
-      email: new FormControl('',[
+      email: new FormControl('', [
         Validators.required,
         Validators.email
       ]),
-      dni: new FormControl('',[
+      dni: new FormControl('', [
         Validators.required,
         DniValidator.isValidDni(),
       ]),
-      phone: new FormControl('',[
+      phone: new FormControl('', [
         Validators.required,
         Validators.pattern('[- +()0-9]+'),
       ]),
-      anotherPhone: new FormControl('',[
+      anotherPhone: new FormControl('', [
         Validators.pattern('[- +()0-9]+'),
       ]),
-      province: new FormControl('',[
+      province: new FormControl('', [
         Validators.required,
         Validators.maxLength(15),
         Validators.minLength(2),
       ]),
-      postalCode: new FormControl('',[
+      postalCode: new FormControl('', [
         Validators.required,
         PostalCodeValidator.validatePostalCode(),
       ]),
-      location: new FormControl('',[
+      location: new FormControl('', [
         Validators.required,
         Validators.maxLength(15),
         Validators.minLength(2),
       ]),
-      nickname: new FormControl('',[
+      nickname: new FormControl('', [
         Validators.required,
         Validators.maxLength(15),
         Validators.minLength(2),
       ]),
-      pass: new FormControl('',[
+      pass: new FormControl('', [
         Validators.required,
         Validators.maxLength(20),
         Validators.minLength(5),
       ]),
-      pass2: new FormControl('',[
+      pass2: new FormControl('', [
         Validators.required,
         Validators.maxLength(20),
         Validators.minLength(5),
@@ -94,21 +95,23 @@ export class UserFormComponent implements OnInit {
   get passwordInput() { return this.userForm.get('pass')?.value; }
   get passwordInput2() { return this.userForm.get('pass2')?.value; }
 
-  addUser(){
-    let isValidUser = this.userListService.isValidUser(this.userForm.get("nickname")?.value,this.userForm.get("dni")?.value);
-    if(this.userForm.invalid || this.userForm.get("pass")?.value != this.userForm.get("pass2")?.value || !isValidUser){
-      if(this.userForm.get("pass")?.value === this.userForm.get("pass2")?.value){
+  addUser() {
+    let isValidUser = this.userListService.isValidUser(this.userForm.get("nickname")?.value, this.userForm.get("dni")?.value);
+    let hashPass1 = CryptoJS.SHA3(this.userForm.get("pass")?.value);
+    let hashPass2 = CryptoJS.SHA3(this.userForm.get("pass2")?.value);
+    if (this.userForm.invalid || hashPass1!== hashPass2 || !isValidUser) {
+      if (this.userForm.get("pass")?.value === this.userForm.get("pass2")?.value) {
         alert('Compruebe los campos resaltados');
         return;
       }
-      if(!isValidUser){
+      if (!isValidUser) {
         alert('El nombre de usuario o el dni ya existe');
         return;
       }
       alert('Las contraseñas no coinciden');
       return;
 
-    }else{
+    } else {
       this.newUser = new User(
         this.userForm.get('name')?.value,
         this.userForm.get('lastName1')?.value,
@@ -127,8 +130,8 @@ export class UserFormComponent implements OnInit {
 
     }
     this.userListService.addUser(this.newUser)
-    localStorage.setItem('Alumnos',JSON.stringify(this.userListService.getUsers()));
-    alert ("Añadido");
+    localStorage.setItem('Alumnos', JSON.stringify(this.userListService.getUsers()));
+    alert("Añadido");
   }
 
 }
