@@ -78,6 +78,13 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
   }
   modifyProfile(){
+    let isValidUser = this.userListService.isValidUser(this.userForm.get("nickname")?.value,this.userForm.get("dni")?.value);
+    let changesToDniNickname = (this.userForm.get("nickname")?.value !== this.newUser.nickname || this.userForm.get("dni")?.value !== this.newUser.dni);
+    if(!isValidUser && changesToDniNickname){
+      alert("El dni o el nombre de usuario ya existe");
+      return;
+
+    }
     let userModified = new User(
       this.userForm.get('name')?.value,
       this.userForm.get('lastName1')?.value,

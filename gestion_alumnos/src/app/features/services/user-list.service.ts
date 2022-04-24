@@ -37,4 +37,9 @@ export class UserListService {
     this._users.push(newUser);
     localStorage.setItem('Alumnos',JSON.stringify(this._users));
   }
+  isValidUser(nickname:string, dni:string):boolean{
+    return !this._users.some(userElement =>
+      (userElement.dni.toUpperCase() === dni.toUpperCase() || userElement.nickname === nickname)
+    )
+  }
 }

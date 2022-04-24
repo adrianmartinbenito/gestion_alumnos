@@ -95,9 +95,14 @@ export class UserFormComponent implements OnInit {
   get passwordInput2() { return this.userForm.get('pass2')?.value; }
 
   addUser(){
-    if(this.userForm.invalid || this.userForm.get("pass")?.value != this.userForm.get("pass2")?.value){
+    let isValidUser = this.userListService.isValidUser(this.userForm.get("nickname")?.value,this.userForm.get("dni")?.value);
+    if(this.userForm.invalid || this.userForm.get("pass")?.value != this.userForm.get("pass2")?.value || !isValidUser){
       if(this.userForm.get("pass")?.value === this.userForm.get("pass2")?.value){
         alert('Compruebe los campos resaltados');
+        return;
+      }
+      if(!isValidUser){
+        alert('El nombre de usuario o el dni ya existe');
         return;
       }
       alert('Las contraseñas no coinciden');
