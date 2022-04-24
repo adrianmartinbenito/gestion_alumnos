@@ -17,13 +17,15 @@ import { UserFormComponent } from './features/user-form/user-form.component';
 import { UserListComponent } from './features/user-list/user-list.component';
 import { SharedModule } from './shared/shared.module';
 import { UserProfileComponent } from './features/user-profile/user-profile.component';
+import { StrengthBarComponent } from './features/strength-bar/strength-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserFormComponent,
     UserListComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    StrengthBarComponent
   ],
   imports: [
     BrowserModule,

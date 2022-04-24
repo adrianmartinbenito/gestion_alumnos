@@ -1,3 +1,4 @@
+
 import { PostalCodeValidator } from './../validators/PostalCodeValidator';
 import { DniValidator } from './../validators/dni.validator';
 import { UserListService } from './../services/user-list.service';
@@ -15,6 +16,7 @@ export class UserFormComponent implements OnInit {
   userForm : FormGroup;
   newUser!: User;
   selected='Esada';
+  hide = true;
 
   constructor(public form:FormBuilder, private userListService: UserListService) {
     this.userForm = this.form.group({
@@ -56,6 +58,17 @@ export class UserFormComponent implements OnInit {
         Validators.required,
         PostalCodeValidator.validatePostalCode(),
       ]),
+      pass: new FormControl('',[
+        Validators.required,
+        Validators.maxLength(20),
+        Validators.minLength(5),
+      ]),
+      pass2: new FormControl('',[
+        Validators.required,
+        Validators.maxLength(20),
+        Validators.minLength(5),
+
+      ]),
     })
   }
 
@@ -68,11 +81,18 @@ export class UserFormComponent implements OnInit {
     }
     return;
   }
+  get passwordInput() { return this.userForm.get('pass')?.value; }
+  get passwordInput2() { return this.userForm.get('pass2')?.value; }
 
   addUser(){
-    if(this.userForm.invalid){
-      alert('Bad credentials');
+    if(this.userForm.invalid || this.userForm.get("pass")?.value != this.userForm.get("pass2")?.value){
+      if(this.userForm.get("pass")?.value === this.userForm.get("pass2")?.value){
+        alert('Compruebe los campos resaltados');
+        return;
+      }
+      alert('Las contraseñas no coinciden');
       return;
+
     }else{
       this.newUser = new User(
         this.userForm.get('name')?.value,
