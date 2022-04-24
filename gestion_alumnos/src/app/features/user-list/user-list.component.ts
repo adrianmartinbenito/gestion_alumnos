@@ -32,4 +32,8 @@ export class UserListComponent implements OnInit {
     this.listService.setUserProfile(user);
     this.router.navigate(["/profile"]);
   }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }
