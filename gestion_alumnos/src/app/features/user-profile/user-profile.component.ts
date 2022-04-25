@@ -47,6 +47,9 @@ export class UserProfileComponent implements OnInit {
       anotherPhone: new FormControl(this.newUser.anotherPhone,[
         Validators.pattern("(6|7)[ -]*([0-9][ -]*){8}"),
       ]),
+      country: new FormControl(this.newUser.country,[
+        Validators.required,
+      ]),
       province: new FormControl(this.newUser.province,[
         Validators.required,
         Validators.maxLength(15),

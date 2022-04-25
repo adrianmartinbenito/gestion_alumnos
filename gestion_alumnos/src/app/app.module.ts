@@ -18,6 +18,7 @@ import { UserListComponent } from './features/user-list/user-list.component';
 import { SharedModule } from './shared/shared.module';
 import { UserProfileComponent } from './features/user-profile/user-profile.component';
 import { StrengthBarComponent } from './features/strength-bar/strength-bar.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { StrengthBarComponent } from './features/strength-bar/strength-bar.compo
     MatPaginatorModule,
     MatIconModule,
     MatButtonModule,
+    MatAutocompleteModule,
 
   ],
   providers: [],

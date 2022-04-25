@@ -38,19 +38,24 @@
 
     <mat-form-field appearance="fill">
       <mat-label>Pais</mat-label>
-      <mat-select [(value)]="selected">
+      <mat-select [(value)]="selected" formControlName="country">
         <mat-option value="España">España</mat-option>
-        <mat-option value="option">Alemania</mat-option>
-        <mat-option value="option">Francia</mat-option>
-        <mat-option value="option">Portugal</mat-option>
-        <mat-option value="option">Andorra</mat-option>
+        <mat-option value="Alemania">Alemania</mat-option>
+        <mat-option value="Francia">Francia</mat-option>
+        <mat-option value="Portugal">Portugal</mat-option>
+        <mat-option value="Andorra">Andorra</mat-option>
       </mat-select>
     </mat-form-field>
 
-    <ng-container ngIf*="selected==='España'">
+    <ng-container >
       <mat-form-field appearance="fill">
         <mat-label>Provincia</mat-label>
-        <input matInput placeholder="Zaragoza" formControlName="province">
+        <input matInput placeholder="Zaragoza" formControlName="province" [matAutocomplete]="auto" >
+       <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let province of provinces" [value]="province">
+            {{province}}
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
     </ng-container>
 

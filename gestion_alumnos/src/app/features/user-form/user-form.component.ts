@@ -16,8 +16,9 @@ export class UserFormComponent implements OnInit {
 
   userForm: FormGroup;
   newUser!: User;
-  selected = 'Esada';
-  hide = true;
+  selected!:string;
+  hide=true;
+  provinces = ['Madrid','Valencia','Murcia','Granada','Barcelona','Asturias','Cantabria','Badajoz','Salamanca','Guadalajara'];
 
   constructor(public form: FormBuilder, private userListService: UserListService) {
     this.userForm = this.form.group({
@@ -49,6 +50,9 @@ export class UserFormComponent implements OnInit {
       ]),
       anotherPhone: new FormControl('', [
         Validators.pattern("(6|7)[ -]*([0-9][ -]*){8}"),
+      ]),
+      country: new FormControl('', [
+        Validators.required,
       ]),
       province: new FormControl('', [
         Validators.required,
