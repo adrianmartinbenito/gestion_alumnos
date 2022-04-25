@@ -12,11 +12,15 @@ import { UserListService } from '../services/user-list.service';
 })
 export class UserProfileComponent implements OnInit {
 
+  selected!:string;
   userForm : FormGroup;
   newUser!: User;
+  provinces = ['Madrid','Valencia','Murcia','Granada','Barcelona','Asturias','Cantabria','Badajoz','Salamanca','Guadalajara'];
+
 
   constructor(public form:FormBuilder, private userListService: UserListService,) {
     this.newUser = this.userListService.getUserProfile();
+    this.selected = this.newUser.country;
     this.userForm = this.form.group({
       name: new FormControl(this.newUser.name,[
         Validators.required,
