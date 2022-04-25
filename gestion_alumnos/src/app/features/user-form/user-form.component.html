@@ -47,7 +47,7 @@
       </mat-select>
     </mat-form-field>
 
-    <ng-container >
+    <ng-container *ngIf="selected==='España'" >
       <mat-form-field appearance="fill">
         <mat-label>Provincia</mat-label>
         <input matInput placeholder="Zaragoza" formControlName="province" [matAutocomplete]="auto" >
@@ -58,6 +58,13 @@
         </mat-autocomplete>
       </mat-form-field>
     </ng-container>
+    <ng-container *ngIf="selected!=='España'" >
+      <mat-form-field appearance="fill">
+        <mat-label>Provincia</mat-label>
+        <input matInput placeholder="Zaragoza" formControlName="province" >
+      </mat-form-field>
+    </ng-container>
+
 
 
     <mat-form-field appearance="fill">
