@@ -103,8 +103,8 @@ export class UserFormComponent implements OnInit {
     let isValidUser = this.userListService.isValidUser(this.userForm.get("nickname")?.value, this.userForm.get("dni")?.value);
     let hashPass1 = CryptoJS.SHA3(this.userForm.get("pass")?.value);
     let hashPass2 = CryptoJS.SHA3(this.userForm.get("pass2")?.value);
-    if (this.userForm.invalid || hashPass1!== hashPass2 || !isValidUser) {
-      if (this.userForm.get("pass")?.value === this.userForm.get("pass2")?.value) {
+    if (this.userForm.invalid || this.userForm.get("pass")?.value !== this.userForm.get("pass2")?.value || !isValidUser) {
+      if (this.userForm.get("pass")?.value === this.userForm.get("pass2")?.value || isValidUser) {
         alert('Compruebe los campos resaltados');
         return;
       }
