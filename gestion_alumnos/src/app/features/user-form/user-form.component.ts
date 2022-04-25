@@ -45,10 +45,10 @@ export class UserFormComponent implements OnInit {
       ]),
       phone: new FormControl('', [
         Validators.required,
-        Validators.pattern('[- +()0-9]+'),
+        Validators.pattern("(6|7)[ -]*([0-9][ -]*){8}"),
       ]),
       anotherPhone: new FormControl('', [
-        Validators.pattern('[- +()0-9]+'),
+        Validators.pattern("(6|7)[ -]*([0-9][ -]*){8}"),
       ]),
       province: new FormControl('', [
         Validators.required,

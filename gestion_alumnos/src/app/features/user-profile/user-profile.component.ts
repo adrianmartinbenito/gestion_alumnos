@@ -42,10 +42,10 @@ export class UserProfileComponent implements OnInit {
       ]),
       phone: new FormControl(this.newUser.phone,[
         Validators.required,
-        Validators.pattern('[- +()0-9]+'),
+        Validators.pattern("(6|7)[ -]*([0-9][ -]*){8}"),
       ]),
       anotherPhone: new FormControl(this.newUser.anotherPhone,[
-        Validators.pattern('[- +()0-9]+'),
+        Validators.pattern("(6|7)[ -]*([0-9][ -]*){8}"),
       ]),
       province: new FormControl(this.newUser.province,[
         Validators.required,
